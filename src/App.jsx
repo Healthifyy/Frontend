@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
@@ -32,6 +32,19 @@ class ErrorBoundary extends React.Component {
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    fetch(`${apiUrl}/health`)
+      .then(r => r.json())
+      .then(data => {
+        console.log("Backend status:", data.status);
+      })
+      .catch(() => {
+        console.log("Backend warming up...");
+      });
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <main className="flex-1 flex flex-col relative">
