@@ -51,7 +51,10 @@ export default function SymptomWizard() {
     duration_days: 1,
     severity: 5,
     existing_conditions: [],
-    is_pregnant: false
+    medications: '',
+    is_pregnant: false,
+    recent_travel: false,
+    community_outbreak: false
   });
 
   const nextStep = () => setStep(s => s + 1);
@@ -147,24 +150,57 @@ export default function SymptomWizard() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 pt-2">
-                <div 
-                  onClick={() => setFormData({...formData, is_pregnant: !formData.is_pregnant})}
-                  className={`w-12 h-6 rounded-full relative transition-colors cursor-pointer ${formData.is_pregnant ? 'bg-primary' : 'bg-slate-300'}`}
-                >
-                  <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${formData.is_pregnant ? 'left-7' : 'left-1'}`} />
+              <div className="flex flex-col gap-4 pt-2">
+                <div className="flex items-center gap-4">
+                  <div 
+                    onClick={() => setFormData({...formData, is_pregnant: !formData.is_pregnant})}
+                    className={`w-12 h-6 rounded-full relative transition-colors cursor-pointer ${formData.is_pregnant ? 'bg-primary' : 'bg-slate-300'}`}
+                  >
+                    <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${formData.is_pregnant ? 'left-7' : 'left-1'}`} />
+                  </div>
+                  <span className="text-sm font-semibold text-slate-600">Is pregnant?</span>
                 </div>
-                <span className="text-sm font-semibold text-slate-600">Is pregnant?</span>
+                
+                <div className="flex items-center gap-4">
+                  <div 
+                    onClick={() => setFormData({...formData, existing_conditions: formData.existing_conditions.includes('diabetes') ? [] : ['diabetes']})}
+                    className={`w-12 h-6 rounded-full relative transition-colors cursor-pointer ${formData.existing_conditions.includes('diabetes') ? 'bg-primary' : 'bg-slate-300'}`}
+                  >
+                    <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${formData.existing_conditions.includes('diabetes') ? 'left-7' : 'left-1'}`} />
+                  </div>
+                  <span className="text-sm font-semibold text-slate-600">Diabetic?</span>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div 
+                    onClick={() => setFormData({...formData, recent_travel: !formData.recent_travel})}
+                    className={`w-12 h-6 rounded-full relative transition-colors cursor-pointer ${formData.recent_travel ? 'bg-primary' : 'bg-slate-300'}`}
+                  >
+                    <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${formData.recent_travel ? 'left-7' : 'left-1'}`} />
+                  </div>
+                  <span className="text-sm font-semibold text-slate-600">Recent Travel?</span>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div 
+                    onClick={() => setFormData({...formData, community_outbreak: !formData.community_outbreak})}
+                    className={`w-12 h-6 rounded-full relative transition-colors cursor-pointer ${formData.community_outbreak ? 'bg-primary' : 'bg-slate-300'}`}
+                  >
+                    <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${formData.community_outbreak ? 'left-7' : 'left-1'}`} />
+                  </div>
+                  <span className="text-sm font-semibold text-slate-600">Local Outbreak?</span>
+                </div>
               </div>
-              
-              <div className="flex items-center gap-4">
-                <div 
-                  onClick={() => setFormData({...formData, existing_conditions: formData.existing_conditions.includes('diabetes') ? [] : ['diabetes']})}
-                  className={`w-12 h-6 rounded-full relative transition-colors cursor-pointer ${formData.existing_conditions.includes('diabetes') ? 'bg-primary' : 'bg-slate-300'}`}
-                >
-                  <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${formData.existing_conditions.includes('diabetes') ? 'left-7' : 'left-1'}`} />
-                </div>
-                <span className="text-sm font-semibold text-slate-600">Diabetic?</span>
+
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Current Medications</label>
+                <input 
+                  type="text" 
+                  className="w-full bg-[#f8f9fa] border border-[#e9ecef] rounded-xl px-6 py-4 text-sm font-medium outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  placeholder="e.g. Metformin, Aspirin"
+                  value={formData.medications}
+                  onChange={(e) => setFormData({...formData, medications: e.target.value})}
+                />
               </div>
             </div>
 
