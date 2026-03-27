@@ -80,20 +80,34 @@ export default function Landing() {
 
         {/* Center Pill Links (matching solomaze) */}
         <div className="hidden lg:flex items-center bg-[#f1f1f1] rounded-full px-2 py-1.5 shadow-sm border border-black/5">
-          {['Home', 'About us', 'Platform', 'Pricing', 'Resources', 'Web3.0'].map((item, i) => (
+          {['Home', 'About us', 'Platform', 'Resources'].map((item, i) => (
             <button key={i} className={`px-5 py-2 text-[13px] rounded-full transition-colors ${i === 0 ? 'font-bold text-black' : 'text-slate-500 hover:text-black font-medium'}`}>
               {item}
             </button>
           ))}
         </div>
 
-        {/* Right Button */}
-        <button 
-          onClick={() => navigate('/worker')}
-          className="hidden lg:block bg-[#f1f1f1] hover:bg-[#e5e5e5] text-slate-800 text-[13px] font-bold px-8 py-2.5 rounded-full transition-colors"
-        >
-          Worker Login
-        </button>
+        {/* Right Buttons */}
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => navigate('/auth')}
+            className="hidden lg:block text-slate-600 hover:text-black text-[13px] font-bold px-4 py-2.5 transition-colors"
+          >
+            Sign In
+          </button>
+          <button 
+            onClick={() => navigate('/auth')}
+            className="hidden lg:block bg-primary text-white text-[13px] font-bold px-8 py-2.5 rounded-full hover:bg-emerald-600 transition-colors shadow-lg shadow-primary/20"
+          >
+            Sign Up
+          </button>
+          <button 
+            onClick={() => navigate('/worker')}
+            className="hidden lg:block bg-[#f1f1f1] hover:bg-[#e5e5e5] text-slate-800 text-[13px] font-bold px-6 py-2.5 rounded-full transition-colors"
+          >
+            Worker
+          </button>
+        </div>
       </motion.nav>
 
       {/* ------------------------------------------------------------- */}

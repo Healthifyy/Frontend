@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 import Landing from './pages/Landing';
+import Auth from './pages/Auth';
 import SymptomWizard from './pages/SymptomWizard';
 import Results from './pages/Results';
 import WorkerDashboard from './pages/WorkerDashboard';
@@ -37,6 +38,7 @@ const AnimatedRoutes = () => {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Landing />} />
+            <Route path="/auth" element={<Auth />} />
             <Route path="/check" element={<SymptomWizard />} />
             <Route path="/results" element={<Results />} />
             <Route path="/worker" element={
