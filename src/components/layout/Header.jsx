@@ -60,16 +60,16 @@ export default function Header() {
           ))}
           <div className="flex items-center gap-3 ml-2">
             <Link
-              to="/check"
-              className="bg-primary text-white rounded-full px-4 py-2 text-sm font-medium transition ease-in-out hover:brightness-95 active:scale-95"
+              to="/auth"
+              className="text-sm font-bold text-[#64748b] hover:text-black transition-colors px-2"
             >
-              Check Symptoms
+              Sign In
             </Link>
             <Link
-              to="/worker"
-              className="border border-primary text-primary rounded-full px-4 py-2 text-sm font-medium transition ease-in-out hover:bg-primary/5 active:scale-95"
+              to="/auth"
+              className="bg-[#0f172a] text-white rounded-full px-5 py-2.5 text-sm font-bold transition ease-in-out hover:bg-black active:scale-95 shadow-lg shadow-slate-200"
             >
-              Worker Login
+              Sign Up
             </Link>
           </div>
         </nav>
@@ -110,18 +110,27 @@ export default function Header() {
           <hr className="border-[#e2e8f0]" />
           <Link
             to="/check"
-            className="bg-primary text-white rounded-full px-4 py-3 text-center font-medium"
+            className="bg-primary text-white rounded-full px-4 py-3 text-center font-bold"
             onClick={closeMenu}
           >
-            Check Symptoms
+            Start Triage
           </Link>
-          <Link
-            to="/worker"
-            className="border border-primary text-primary rounded-full px-4 py-3 text-center font-medium"
-            onClick={closeMenu}
-          >
-            Worker Login
-          </Link>
+          <div className="grid grid-cols-2 gap-3">
+            <Link
+              to="/auth"
+              className="border border-slate-200 text-slate-600 rounded-full px-4 py-3 text-center font-bold text-sm"
+              onClick={closeMenu}
+            >
+              Sign In
+            </Link>
+            <Link
+              to="/auth"
+              className="bg-[#0f172a] text-white rounded-full px-4 py-3 text-center font-bold text-sm"
+              onClick={closeMenu}
+            >
+              Sign Up
+            </Link>
+          </div>
         </div>
       </div>
     </header>
